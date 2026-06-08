@@ -11,4 +11,8 @@ app.use(cors())
 app.use('/', publicRoutes)
 app.use('/', auth, privateRouter)
 
-app.listen(3000, () => console.log("Servidor Rodando"))
+const PORT = process.env.PORT
+
+app.listen(PORT, () => {
+    console.log(`Servidor Rodando na porta ${PORT}`)
+})
