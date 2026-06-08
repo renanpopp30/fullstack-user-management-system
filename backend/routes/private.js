@@ -8,7 +8,6 @@ const router = express.Router()
 
 router.get('/listar', async (req, res) => {
     try {
-        // findMany() porque quer encontrar todos/vários
         const users = await prisma.user.findMany()
 
         res.status(200).json({ message: 'Usuários cadastrados', users })
@@ -61,9 +60,6 @@ router.put('/edit-user/:id', async (req, res) => {
             where: { id: id},
             data
         })
-        // Antes eu fazia assim, mas dependendo da versão do prisma pode ser que se um dado não chegasse ele colocaria no banco como undefined
-        // então agora eu confirmo se tem alguma coisa e ai sim adiciono no data
-        // data: {name: userInfo.name, email: userInfo.email, linkURLimage: userInfo.linkURLimage }
         res.status(200).json({ message: 'informações do usuário trocadas', infoUser })
     } catch (err) {
         res.status(500).json({ message: 'Falha no servidor' })
@@ -89,9 +85,6 @@ router.put('/trocar-senha/:id', async (req, res) => {
             where: { id: id},
             data: { password: hashPassword }
         })
-        // Antes eu fazia assim: data: {name: userInfo.name, email: userInfo.email, linkURLimage: userInfo.linkURLimage },
-        // mas dependendo da versão do prisma pode ser que se um dado não chegasse ele colocaria no banco como undefined
-        // então agora eu confirmo se tem alguma coisa e ai sim adiciono no data
         res.status(200).json({ message: 'Senha alterada com sucesso !', infoUser })
     } catch (err) {
         console.log(err)

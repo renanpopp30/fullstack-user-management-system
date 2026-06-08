@@ -12,7 +12,3 @@ app.use('/', publicRoutes)
 app.use('/', auth, privateRouter)
 
 app.listen(3000, () => console.log("Servidor Rodando"))
-
-// renanpopp45_db_user
-// 0ypbWaGuSIqTPlWy
-// mongodb+srv://renanpopp45_db_user:0ypbWaGuSIqTPlWy@users.2dh37hq.mongodb.net/?appName=Users

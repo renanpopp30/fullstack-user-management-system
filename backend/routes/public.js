@@ -51,18 +51,17 @@ router.post('/cadastro', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const userInfo = req.body
-        //Busca o usuário no banco de dados
+        
         const user = await prisma.user.findUnique({
             where: { email: userInfo.email },
         })
 
-        // Verifica se a busca retorna um usuário do banco 
         if (!user) {
             return res.status(404).json({ message: 'Usuário não encontrado' })
         }
-        // Usa o compare do bcrypt para ver se a senha digitada é igual com a salva no banco
+    
         const isMatch = await bcrypt.compare(userInfo.password, user.password)
-        // Se a busca não retorna que as senhas coincidem entra no if
+        
         if (!isMatch) {
             return res.status(400).json({ message: 'Senha inválida' })
         }
