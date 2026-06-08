@@ -11,6 +11,7 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 
 // Cadastro
 router.post('/cadastro', async (req, res) => {
+    console.log('=== ROTA CADASTRO CHAMADA ===')
     try {
         const user = req.body
         const salt = await bcrypt.genSalt(10)
@@ -23,7 +24,7 @@ router.post('/cadastro', async (req, res) => {
             },
 
         })
-
+        console.log('Usuário criado:', userDB)
         try {
             const data = await resend.emails.send({
                 from: 'onboarding@resend.dev',
@@ -42,6 +43,8 @@ router.post('/cadastro', async (req, res) => {
 
         res.status(201).json(userDB)
     } catch (err) {
+        console.log('ERRO CADASTRO:')
+        console.log(err)
         res.status(500).json({ message: "Erro no servidor tente novamente" })
     }
 
