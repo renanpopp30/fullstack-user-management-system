@@ -39,11 +39,7 @@ function TrocarSenhaUser() {
         }else {
             loadUser()
         }
-    }, []) // ver de por token, navigate, loadUser por causa disso:
-    // Tenho que deixar o token detro desse array pq
-    // Sempre que o valor da variável token mudar, o React roda o bloco de código novamente
-    // deixar o navigatee loadUser porque a documentação do React fala para deixar ali nas 
-    // dependências toda variavel ou função externa
+    }, [])
 
     async function alterarSenha() {
         console.log(senhaAtual)

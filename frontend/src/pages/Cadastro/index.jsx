@@ -20,7 +20,7 @@ function Cadastro() {
             alert('Erro ao cadastrar usuário')
         }
         // Valor do input vem dentro desse "caminho" do objeto
-        //console.log(nameRef.current.value)
+        // nameRef.current.value
     }
 
     return (

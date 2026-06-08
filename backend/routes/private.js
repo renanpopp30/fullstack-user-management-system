@@ -75,7 +75,7 @@ router.put('/trocar-senha/:id', async (req, res) => {
             where: { id: id },
         })
         const isMatch = await bcrypt.compare(userInfo.passwordAtual, user.password)
-        // Se a busca não retorna que as senhas coincidem entra no if
+
         if (!isMatch) {
             return res.status(400).json({ message: 'Senha inválida' })
         }

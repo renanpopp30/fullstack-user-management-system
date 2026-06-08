@@ -10,7 +10,7 @@ function Login() {
         // preventDefault() -> faz não reinicia a tela
         event.preventDefault()
         try {
-            // colocar data dentro de {} para ele só trazer o que está dentro de data (token nesse caso), senão ele traz outras informações que nn precisa
+            // colocar data dentro de {} para ele só trazer o que está dentro de data (token nesse caso), senão ele traz outras informações que não precisa
             const { data }= await api.post('/login', {
                 email: emailRef.current.value,
                 password: passwordlRef.current.value
@@ -23,8 +23,7 @@ function Login() {
         } catch (err) {
             alert('Senha ou email errados')
         }
-        // Valor do input vem dentro desse "caminho" do objeto
-        //console.log(emailRef.current.value)
+
     }
 
     return (

@@ -40,11 +40,7 @@ function Perfil() {
         }else {
             loadUser()
         }
-    }, []) // ver de por token, navigate, loadUser por causa disso:
-    // Tenho que deixar o token detro desse array pq
-    // Sempre que o valor da variável token mudar, o React roda o bloco de código novamente
-    // deixar o navigatee loadUser porque a documentação do React fala para deixar ali nas 
-    // dependências toda variavel ou função externa
+    }, [])
 
     async function uploadImage() {
         try {
@@ -58,10 +54,8 @@ function Perfil() {
             });
             const data = await response.json();
             // depois de carregar a imagem do input tava usando setUrlImageUser(data.secure_url);
-            // mais não dava certo poque se o usuario não mandasse nada(apertava em cancelar) remvia a foto que estava antes
+            // mais não dava certo poque se o usuario não mandasse nada(apertava em cancelar) reenvia a foto que estava antes
             //  -- Mandar pro backend --
-            // const id = localStorage.getItem('id')
-            // const token = localStorage.getItem('token')
             // requisição put(url, body, config)
             await api.put(`/edit-user/${id}`, // URL
                 { linkURLimage: data.secure_url }, // body backend recebe em req.body
@@ -80,8 +74,6 @@ function Perfil() {
         if (nameUser === allUser.name && emailUser === allUser.email) {
             return alert("Você tem que trocar o Nome ou o Email para fazer a alteração")
         }
-        // const id = localStorage.getItem('id')
-        // const token = localStorage.getItem('token')
         const { data, error } = await api.put(`/edit-user/${id}`, // URL
             {
                 name: nameUser,
